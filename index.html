@@ -2,6 +2,8 @@
 <html>
     <head>
         <title>Sound Board</title>
+        <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+        <link rel="preconnect" href="https://i.icomoon.io">
         <link rel="stylesheet" type="text/css" href="style.css">
         <link rel="stylesheet" href="https://i.icomoon.io/public/temp/1be0585f4d/UntitledProject/style.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
@@ -23,114 +25,40 @@
                 <section id="main-buttons">
                     <div class="grid">
                         <div class="grid-item">
-                            <button id="playBtn"></button>
+                            <button id="playBtn" data-sound="alerte-au-gogole" aria-label="Alerte au gogole">Alerte au gogole</button>
                         </div>
                         <div class="grid-item">
-                            <button id="playBtn2"></button>
+                            <button id="playBtn2" data-sound="c-nul-homer" aria-label="C'est nul Homer">C'est nul Homer</button>
                         </div>
                         <div class="grid-item">
-                            <button id="playBtn3"></button>
+                            <button id="playBtn3" data-sound="cest-qui-le-patron" aria-label="C'est qui le patron">C'est qui le patron</button>
                         </div>
                         <div class="grid-item">
-                            <button id="playBtn4"></button>
+                            <button id="playBtn4" data-sound="la-femme-nest-pas-a-la-cuisine" aria-label="La femme n'est pas à la cuisine">La femme n'est pas à la cuisine</button>
                         </div>
                         <div class="grid-item">
-                            <button id="playBtn5""></button>
+                            <button id="playBtn5" data-sound="la-place-de-la-femme-cest-a-la-cuisine" aria-label="La place de la femme à la cuisine">La place de la femme à la cuisine</button>
                         </div>
                         <div class="grid-item">
-                            <button id="playBtn6"></button>
+                            <button id="playBtn6" data-sound="" aria-label="Bouton sans son"></button>
                         </div>
                         <div class="grid-item">
-                            <button id="playBtn7"></button>
+                            <button id="playBtn7" data-sound="" aria-label="Bouton sans son"></button>
                         </div>
                         <div class="grid-item">
-                            <button id="playBtn8"></button>
+                            <button id="playBtn8" data-sound="" aria-label="Bouton sans son"></button>
                         </div>
                         <div class="grid-item">
-                            <button id="playBtn9"></button>
+                            <button id="playBtn9" data-sound="" aria-label="Bouton sans son"></button>
                         </div>
                     </div>
                 </section>
             </main>
-        <footer>
-            <p>&copy; 2023 Mon Site Web</p>
-        </footer>
-        </div>    
+            <footer>
+                <p>&copy; 2023 Mon Site Web</p>
+            </footer>
+        </div>
+
+        <script src="assets/js/soundboard.js"></script>
     </body>
-
-    <script>
-    // let playBtn = document.getElementById("playBtn");
-    // let playBtn2 = document.getElementById("playBtn2");
-    // let playBtn3 = document.getElementById("playBtn3");
-    // let playBtn4 = document.getElementById("playBtn4");
-
-    let playBtns = document.querySelectorAll("button");
-    console.log(playBtns[2]);
-
-    // Liste des buttons 
-
-    playBtns[0].addEventListener('click', function(){
-        sound1.play();
-    })
-    playBtns[1].addEventListener('click', function(){
-        sound2.play();
-    })
-    playBtns[2].addEventListener('click', function(){
-        sound3.play();
-    })
-    playBtns[3].addEventListener('click', function(){
-        sound4.play();
-    })
-    playBtns[4].addEventListener('click', function(){
-        sound5.play();
-    })
-
-
-    // liste des sons
-
-    var sound1 = new Howl({
-        src: ['sounds/alerte-au-gogole.mp3'],
-        html5: true,
-        onplay: isPlaying
-    });
-
-    var sound2 = new Howl({
-        src: ['sounds/c-nul-homer.mp3'],
-        html5: true,
-        onplay: isPlaying
-    });
-
-    var sound3 = new Howl({
-        src: ['sounds/cest-qui-le-patron.mp3'],
-        html5: true,
-        onplay: isPlaying
-    });
-
-    var sound4 = new Howl({
-        src: ['sounds/la-femme-nest-pas-a-la-cuisine.mp3'],
-        html5: true,
-        onplay: isPlaying
-    });
-
-    var sound5 = new Howl({
-        src: ['sounds/la-place-de-la-femme-cest-a-la-cuisine.mp3'],
-        html5: true,
-        onplay: isPlaying
-    });
-
-
-
-    function isPlaying(){
-        //si le son est déclenché
-        if(sound1.playing()){
-            console.log('audio is currently playing...');
-            setTimeout(isPlaying, 1000); //adjust timeout to fit your needs
-            playBtn.classList.add("is-playing");
-        }
-        else{
-            console.log('stopped');  
-            playBtn.classList.remove("is-playing");
-        }
-    }
-    </script>
 </html>

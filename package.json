@@ -1,6 +1,17 @@
 {
+  "name": "soundboard-app",
+  "private": true,
+  "scripts": {
+    "sass:dev": "sass style.scss style.css --style=expanded --source-map",
+    "sass:watch": "sass style.scss style.css --watch",
+    "sass:build": "sass style.scss style.css --style=compressed --no-source-map",
+    "serve": "http-server -p 5173 -c-1"
+  },
   "dependencies": {
-    "howler": "^2.2.4",
-    "sass": "^1.69.4"
+    "howler": "^2.2.4"
+  },
+  "devDependencies": {
+    "sass": "^1.69.4",
+    "http-server": "^14.1.1"
   }
 }

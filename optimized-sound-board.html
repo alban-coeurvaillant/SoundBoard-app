@@ -2,6 +2,8 @@
 <html>
     <head>
         <title>Sound Board</title>
+        <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+        <link rel="preconnect" href="https://i.icomoon.io">
         <link rel="stylesheet" type="text/css" href="style.css">
         <link rel="stylesheet" href="https://i.icomoon.io/public/temp/1be0585f4d/UntitledProject/style.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.4/howler.min.js"></script>
@@ -23,31 +25,31 @@
                 <section id="main-buttons">
                     <div class="grid">
                         <div class="grid-item">
-                            <button id="playBtn" data-sound="alerte-au-gogole">Alerte au gogole</button>
+                            <button id="playBtn" data-sound="alerte-au-gogole" aria-label="Alerte au gogole">Alerte au gogole</button>
                         </div>
                         <div class="grid-item">
-                            <button id="playBtn2" data-sound="c-nul-homer">C'est nul Homer</button>
+                            <button id="playBtn2" data-sound="c-nul-homer" aria-label="C'est nul Homer">C'est nul Homer</button>
                         </div>
                         <div class="grid-item">
-                            <button id="playBtn3" data-sound="cest-qui-le-patron">C'est qui le patron</button>
+                            <button id="playBtn3" data-sound="cest-qui-le-patron" aria-label="C'est qui le patron">C'est qui le patron</button>
                         </div>
                         <div class="grid-item">
-                            <button id="playBtn4" data-sound="la-femme-nest-pas-a-la-cuisine">La femme n'est pas à la cuisine</button>
+                            <button id="playBtn4" data-sound="la-femme-nest-pas-a-la-cuisine" aria-label="La femme n'est pas à la cuisine">La femme n'est pas à la cuisine</button>
                         </div>
                         <div class="grid-item">
-                            <button id="playBtn5" data-sound="la-place-de-la-femme-cest-a-la-cuisine">La place de la femme à la cuisine</button>
+                            <button id="playBtn5" data-sound="la-place-de-la-femme-cest-a-la-cuisine" aria-label="La place de la femme à la cuisine">La place de la femme à la cuisine</button>
                         </div>
                         <div class="grid-item">
-                            <button id="playBtn6" data-sound=""></button>
+                            <button id="playBtn6" data-sound="" aria-label="Bouton sans son"></button>
                         </div>
                         <div class="grid-item">
-                            <button id="playBtn7" data-sound=""></button>
+                            <button id="playBtn7" data-sound="" aria-label="Bouton sans son"></button>
                         </div>
                         <div class="grid-item">
-                            <button id="playBtn8" data-sound=""></button>
+                            <button id="playBtn8" data-sound="" aria-label="Bouton sans son"></button>
                         </div>
                         <div class="grid-item">
-                            <button id="playBtn9" data-sound=""></button>
+                            <button id="playBtn9" data-sound="" aria-label="Bouton sans son"></button>
                         </div>
                     </div>
                 </section>
@@ -57,104 +59,6 @@
             </footer>
         </div>
         
-        <script>
-            // Objet pour stocker tous les sons
-            const sounds = {};
-            
-            // Liste des fichiers sons disponibles
-            const soundFiles = [
-                'alerte-au-gogole',
-                'c-nul-homer',
-                'cest-qui-le-patron',
-                'la-femme-nest-pas-a-la-cuisine',
-                'la-place-de-la-femme-cest-a-la-cuisine'
-            ];
-            
-            // Initialisation des sons
-            soundFiles.forEach(soundFile => {
-                sounds[soundFile] = new Howl({
-                    src: [`sounds/${soundFile}.mp3`],
-                    html5: true
-                });
-            });
-            
-            // Sélectionner tous les boutons
-            const buttons = document.querySelectorAll('button[data-sound]');
-            
-            // Ajouter les écouteurs d'événements à chaque bouton
-            buttons.forEach(button => {
-                const soundName = button.getAttribute('data-sound');
-                if (soundName && sounds[soundName]) {
-                    button.addEventListener('click', function() {
-                        playSound(soundName, this);
-                    });
-                }
-            });
-            
-            // Fonction pour jouer un son et mettre à jour l'état du bouton
-            function playSound(soundName, buttonElement) {
-                const sound = sounds[soundName];
-                
-                // Réinitialiser la classe sur tous les boutons
-                buttons.forEach(btn => {
-                    btn.classList.remove('is-playing');
-                });
-                
-                // Arrêter tous les sons en cours
-                Object.values(sounds).forEach(sound => {
-                    sound.stop();
-                });
-                
-                // Jouer le nouveau son
-                sound.play();
-                buttonElement.classList.add('is-playing');
-                
-                // Retirer la classe quand le son est terminé
-                sound.once('end', function() {
-                    buttonElement.classList.remove('is-playing');
-                });
-            }
-            
-            // Initialiser le sélecteur de thèmes
-            const themeSelect = document.getElementById('theme-select');
-            const themes = ['Tous', 'Homer Simpson', 'Cuisine', 'Divers'];
-            
-            themes.forEach(theme => {
-                const option = document.createElement('option');
-                option.value = theme.toLowerCase();
-                option.textContent = theme;
-                themeSelect.appendChild(option);
-            });
-            
-            // Filtre par thème
-            themeSelect.addEventListener('change', function() {
-                const selectedTheme = this.value.toLowerCase();
-                
-                buttons.forEach(button => {
-                    const soundName = button.getAttribute('data-sound');
-                    const parentItem = button.closest('.grid-item');
-                    
-                    if (!selectedTheme || selectedTheme === 'tous') {
-                        parentItem.style.display = 'block';
-                        return;
-                    }
-                    
-                    // Logique de filtrage basée sur le thème
-                    let showButton = false;
-                    
-                    if (selectedTheme === 'homer simpson' && soundName.includes('homer')) {
-                        showButton = true;
-                    } else if (selectedTheme === 'cuisine' && soundName.includes('cuisine')) {
-                        showButton = true;
-                    } else if (selectedTheme === 'divers' && 
-                              !soundName.includes('homer') && 
-                              !soundName.includes('cuisine')) {
-                        showButton = true;
-                    }
-                    
-                    parentItem.style.display = showButton ? 'block' : 'none';
-                });
-            });
-        </script>
+        <script src="assets/js/soundboard.js"></script>
     </body>
 </html>
