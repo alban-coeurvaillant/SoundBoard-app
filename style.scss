@@ -262,44 +262,48 @@ html {
                 justify-self: center;
                 border-radius: var(--radius);
                 // padding: 0  1em;
-                button {
-                    border-radius: var(--radius);
-                    background: linear-gradient(145deg, #2e2e2e, #272727);
-                    box-shadow: inset var(--positionX) var(--positionY) var(--blur) var(--darkColor),
-                    inset var(--positionXOpposite) var(--positionYOpposite) var(--blur) var(--lightColor);
-                    // width: var(--size);
-                    // height: var(--size);
-                    padding: 1em 0;
-                    width: 95%;
-                    @extend %no-border;
-                    &.is-playing {
-                        outline: solid 2px var(--textColor);
-                        &::after{
-                            color: var(--skeu-background);
-                            opacity: 1;
+                    button {
+                        width: 95%;
+                        aspect-ratio: 1 / 1;
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        flex-direction: column;
+                        text-align: center;
+                        gap: .25rem;
+                        padding: .5em;
+                        background: linear-gradient(145deg, #2e2e2e, #272727);
+                        box-shadow: inset var(--positionX) var(--positionY) var(--blur) var(--darkColor),
+                                    inset var(--positionXOpposite) var(--positionYOpposite) var(--blur) var(--lightColor);
+                        @extend %no-border;
+                        &.is-playing {
+                            outline: solid 2px var(--textColor);
+                            &::after{
+                                color: var(--skeu-background);
+                                opacity: 1;
+                                @extend %has-transition;
+                            }
                             @extend %has-transition;
+                        }
+                        &:hover {
+                            cursor: pointer;
+                            box-shadow: inset var(--positionX) var(--positionY) var(--blur) var(--darkColor),
+                                        inset var(--positionXOpposite) var(--positionYOpposite) var(--blur) var(--lightColor);
+                            &::after{
+                                opacity: 1;
+                            }
+                        }
+                        &::after{
+                            content: "\ea15";
+                            display: block;
+                            font-family: 'icomoon' !important;
+                            font-size: clamp(1.5rem, 8vmin, 3rem);
+                            color: #615d5d;
+                            opacity: 0.3;
                         }
                         @extend %has-transition;
                     }
-                    &:hover {
-                        cursor: pointer;
-                        box-shadow: inset var(--positionX) var(--positionY) var(--blur) var(--darkColor),
-                                    inset var(--positionXOpposite) var(--positionYOpposite) var(--blur) var(--lightColor);
-                        &::after{
-                        //    color: white;
-                            opacity: 1;
-                        }
-                    }
-                    &:after{
-                        content: "\ea15";
-                        display: block;
-                        font-family: 'icomoon' !important;
-                        @include font-size(6);
-                        color: #615d5d;
-                        opacity: 0.3;
-                    }
-                    @extend %has-transition;
-                }
             }
         }
         
